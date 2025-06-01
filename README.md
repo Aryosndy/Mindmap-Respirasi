@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -253,7 +252,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="title">🧬 MINDMAP BIOKIMIA INTERAKTIF</h1>
+        <h1 class="title">🧬 Mindmap Respirasi</h1>
         
         <div class="interactive-controls" style="text-align: center; margin-bottom: 30px;">
             <button class="interactive-btn" onclick="toggleSection('respirasi')">🫁 Respirasi</button>
