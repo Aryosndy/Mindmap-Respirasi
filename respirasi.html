@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindmap Biokimia Interaktif</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .mindmap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .main-branch {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            border-radius: 15px;
+            padding: 25px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .main-branch:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .respirasi {
+            background: linear-gradient(135deg, #FF6B6B, #EE5A24);
+        }
+
+        .autotrofi {
+            background: linear-gradient(135deg, #4ECDC4, #44A08D);
+        }
+
+        .aerobik {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+        }
+
+        .anaerobik {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+        }
+
+        .branch-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+        }
+
+        .sub-branch {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .sub-branch:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(5px);
+        }
+
+        .reaction {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+        }
+
+        .results {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .result-item {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tr:hover {
+            background: #e3f2fd;
+            transition: all 0.3s ease;
+        }
+
+        .tips {
+            background: linear-gradient(135deg, #FFD93D, #FF6B35);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            color: white;
+        }
+
+        .tip-item {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 10px;
+            margin: 8px 0;
+            border-left: 4px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .interactive-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .interactive-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .mindmap {
+                grid-template-columns: 1fr;
+            }
+            
+            .title {
+                font-size: 2em;
+            }
+            
+            .branch-title {
+                font-size: 1.5em;
+            }
+        }
+
+        .cycle-diagram {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .cycle-flow {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .cycle-step {
+            background: linear-gradient(135deg, #4ECDC4, #44A08D);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px;
+            flex: 1;
+            min-width: 150px;
+            transition: all 0.3s ease;
+        }
+
+        .cycle-step:hover {
+            transform: scale(1.05);
+        }
+
+        .arrow {
+            font-size: 2em;
+            color: #667eea;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">🧬 MINDMAP BIOKIMIA INTERAKTIF</h1>
+        
+        <div class="interactive-controls" style="text-align: center; margin-bottom: 30px;">
+            <button class="interactive-btn" onclick="toggleSection('respirasi')">🫁 Respirasi</button>
+            <button class="interactive-btn" onclick="toggleSection('autotrofi')">🌱 Autotrofi</button>
+            <button class="interactive-btn" onclick="toggleSection('comparison')">📊 Perbandingan</button>
+            <button class="interactive-btn" onclick="showAll()">🔍 Tampilkan Semua</button>
+        </div>
+
+        <div class="mindmap" id="respirasi-section">
+            <!-- RESPIRASI AEROBIK -->
+            <div class="main-branch aerobik">
+                <div class="branch-title">
+                    <span class="emoji">🌬️</span>
+                    RESPIRASI AEROBIK
+                </div>
+                
+                <div class="sub-branch">
+                    <strong>Membutuhkan O₂ (Oksigen)</strong>
+                    <div class="reaction">
+                        C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + 38 ATP
+                    </div>
+                </div>
+
+                <div class="sub-branch">
+                    <strong>🔄 Tahapan:</strong>
+                    <div style="margin-top: 10px;">
+                        <div><strong>1. Glikolisis</strong> (sitoplasma) → 2 ATP + 2 NADH</div>
+                        <div><strong>2. Siklus Krebs</strong> (matriks mitokondria) → 2 ATP + 6 NADH + 2 FADH₂</div>
+                        <div><strong>3. Transport Elektron</strong> (membran dalam) → 34 ATP</div>
+                    </div>
+                </div>
+
+                <div class="results">
+                    <div class="result-item">Total: 38 ATP</div>
+                    <div class="result-item">Efisien</div>
+                    <div class="result-item">Butuh O₂</div>
+                </div>
+            </div>
+
+            <!-- RESPIRASI ANAEROBIK -->
+            <div class="main-branch anaerobik">
+                <div class="branch-title">
+                    <span class="emoji">🚫</span>
+                    RESPIRASI ANAEROBIK
+                </div>
+                
+                <div class="sub-branch">
+                    <strong>Tanpa O₂ (Oksigen)</strong>
+                    <div class="reaction">
+                        Fermentasi Alkohol:<br>
+                        C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂ + 2 ATP
+                    </div>
+                    <div class="reaction">
+                        Fermentasi Asam Laktat:<br>
+                        C₆H₁₂O₆ → 2C₃H₆O₃ + 2 ATP
+                    </div>
+                </div>
+
+                <div class="sub-branch">
+                    <strong>🍎 Hasil Produk:</strong>
+                    <div style="margin-top: 10px;">
+                        <div><strong>• Etanol (alkohol)</strong> - Ragi, wine, roti</div>
+                        <div><strong>• Asam laktat</strong> - Yogurt, keju, otot lelah</div>
+                        <div><strong>• Asam asetat</strong> - Cuka fermentasi</div>
+                    </div>
+                </div>
+
+                <div class="results">
+                    <div class="result-item">Total: 2 ATP</div>
+                    <div class="result-item">Kurang efisien</div>
+                    <div class="result-item">Tanpa O₂</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mindmap" id="autotrofi-section">
+            <!-- FOTOAUTOTROFI -->
+            <div class="main-branch autotrofi">
+                <div class="branch-title">
+                    <span class="emoji">🌞</span>
+                    FOTOAUTOTROFI
+                </div>
+                
+                <div class="sub-branch">
+                    <strong>Menggunakan Cahaya</strong>
+                    <div class="reaction">
+                        6CO₂ + 6H₂O + cahaya → C₆H₁₂O₆ + 6O₂
+                    </div>
+                </div>
+
+                <div class="sub-branch">
+                    <strong>🌿 EUKARIOT:</strong>
+                    <div>• Tumbuhan hijau</div>
+                    <div>• Alga</div>
+                </div>
+
+                <div class="sub-branch">
+                    <strong>🦠 PROKARIOT:</strong>
+                    <div>• Cyanobacteria</div>
+                    <div>• Bakteri fotosintetik</div>
+                </div>
+
+                <div class="results">
+                    <div class="result-item">Menghasilkan O₂</div>
+                    <div class="result-item">Anabolisme</div>
+                    <div class="result-item">Butuh Cahaya</div>
+                </div>
+            </div>
+
+            <!-- KEMOAUTOTROFI -->
+            <div class="main-branch respirasi">
+                <div class="branch-title">
+                    <span class="emoji">⚗️</span>
+                    KEMOAUTOTROFI
+                </div>
+                
+                <div class="sub-branch">
+                    <strong>Menggunakan Energi Kimia</strong>
+                    <div class="reaction">
+                        CO₂ + 4H₂S + O₂ → CH₂O + 4S + 3H₂O
+                    </div>
+                </div>
+
+                <div class="sub-branch">
+                    <strong>🦠 PROKARIOT SAJA:</strong>
+                    <div>• Bakteri nitrifikasi (NH₃ → NO₃⁻)</div>
+                    <div>• Bakteri sulfur (H₂S → SO₄²⁻)</div>
+                    <div>• Bakteri besi (Fe²⁺ → Fe³⁺)</div>
+                    <div>• Bakteri metana (CH₄ → CO₂)</div>
+                </div>
+
+                <div class="sub-branch">
+                    <strong>🌊 Lokasi:</strong>
+                    <div>• Ventilasi hidrotermal laut dalam</div>
+                    <div>• Tanah (siklus nitrogen)</div>
+                    <div>• Lingkungan tanpa cahaya</div>
+                </div>
+
+                <div class="results">
+                    <div class="result-item">Tanpa Cahaya</div>
+                    <div class="result-item">Energi Kimia</div>
+                    <div class="result-item">Ekstrem</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIKLUS KARBON-OKSIGEN -->
+        <div class="cycle-diagram" id="cycle-section">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">🔄 SIKLUS KARBON-OKSIGEN</h2>
+            <div class="cycle-flow">
+                <div class="cycle-step">
+                    <strong>FOTOSINTESIS</strong><br>
+                    CO₂ + H₂O → Glukosa + O₂
+                </div>
+                <div class="arrow">→</div>
+                <div class="cycle-step">
+                    <strong>RESPIRASI</strong><br>
+                    Glukosa + O₂ → CO₂ + H₂O + ATP
+                </div>
+            </div>
+            <div class="cycle-flow">
+                <div class="cycle-step">
+                    <strong>KEMOSINTESIS</strong><br>
+                    Energi kimia → Glukosa
+                </div>
+                <div class="arrow">↑</div>
+                <div class="cycle-step">
+                    <strong>FERMENTASI</strong><br>
+                    Glukosa → Produk + ATP
+                </div>
+            </div>
+        </div>
+
+        <!-- TABEL PERBANDINGAN -->
+        <div class="comparison-table" id="comparison-section">
+            <h2 style="color: #2c3e50;">📊 TABEL PERBANDINGAN</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspek</th>
+                        <th>Respirasi Aerobik</th>
+                        <th>Respirasi Anaerobik</th>
+                        <th>Fotosintesis</th>
+                        <th>Kemosintesis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>O₂</strong></td>
+                        <td>Dibutuhkan ✅</td>
+                        <td>Tidak dibutuhkan ❌</td>
+                        <td>Dihasilkan 🟢</td>
+                        <td>Bervariasi 🔄</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ATP</strong></td>
+                        <td>38 ATP 🔥</td>
+                        <td>2 ATP 🔋</td>
+                        <td>Menggunakan ATP 📉</td>
+                        <td>Menghasilkan ATP 📈</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Produk</strong></td>
+                        <td>CO₂ + H₂O</td>
+                        <td>Alkohol/Asam laktat</td>
+                        <td>Glukosa + O₂</td>
+                        <td>Glukosa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lokasi</strong></td>
+                        <td>Mitokondria</td>
+                        <td>Sitoplasma</td>
+                        <td>Kloroplas</td>
+                        <td>Sitoplasma</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tipe</strong></td>
+                        <td>Katabolisme ⬇️</td>
+                        <td>Katabolisme ⬇️</td>
+                        <td>Anabolisme ⬆️</td>
+                        <td>Anabolisme ⬆️</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- TIPS MENGHAPAL -->
+        <div class="tips">
+            <h2 style="margin-bottom: 20px;">💡 TIPS MENGHAPAL</h2>
+            <div class="tip-item"><strong>Aerobik = Banyak ATP (38)</strong> - Seperti olahraga aerobik yang memberikan energi banyak!</div>
+            <div class="tip-item"><strong>Anaerobik = Sedikit ATP (2)</strong> - Tanpa oksigen, energi terbatas</div>
+            <div class="tip-item"><strong>Foto = Cahaya (Eukariot + Prokariot)</strong> - Foto butuh cahaya, bisa sel kompleks atau sederhana</div>
+            <div class="tip-item"><strong>Kemo = Kimia (Prokariot saja)</strong> - Reaksi kimia rumit, hanya bakteri yang bisa</div>
+            <div class="tip-item"><strong>Sintesis = Membuat (Anabolisme)</strong> - Sintesis = membangun</div>
+            <div class="tip-item"><strong>Respirasi = Memecah (Katabolisme)</strong> - Respirasi = mengurai untuk energi</div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(section) {
+            const sections = ['respirasi-section', 'autotrofi-section', 'comparison-section', 'cycle-section'];
+            
+            sections.forEach(s => {
+                const element = document.getElementById(s);
+                if (element) {
+                    element.style.display = 'none';
+                }
+            });
+            
+            if (section === 'respirasi') {
+                document.getElementById('respirasi-section').style.display = 'grid';
+                document.getElementById('cycle-section').style.display = 'block';
+            } else if (section === 'autotrofi') {
+                document.getElementById('autotrofi-section').style.display = 'grid';
+                document.getElementById('cycle-section').style.display = 'block';
+            } else if (section === 'comparison') {
+                document.getElementById('comparison-section').style.display = 'block';
+            }
+        }
+        
+        function showAll() {
+            const sections = ['respirasi-section', 'autotrofi-section', 'comparison-section', 'cycle-section'];
+            sections.forEach(s => {
+                const element = document.getElementById(s);
+                if (element) {
+                    if (s.includes('section') && !s.includes('comparison') && !s.includes('cycle')) {
+                        element.style.display = 'grid';
+                    } else {
+                        element.style.display = 'block';
+                    }
+                }
+            });
+        }
+
+        // Animasi hover pada branch
+        document.querySelectorAll('.main-branch').forEach(branch => {
+            branch.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) rotateX(5deg)';
+            });
+            
+            branch.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateX(0)';
+            });
+        });
+
+        // Efek klik pada sub-branch
+        document.querySelectorAll('.sub-branch').forEach(sub => {
+            sub.addEventListener('click', function() {
+                this.style.background = 'rgba(255, 255, 255, 0.4)';
+                setTimeout(() => {
+                    this.style.background = 'rgba(255, 255, 255, 0.2)';
+                }, 200);
+            });
+        });
+
+        // Auto-scroll smooth untuk navigasi
+        document.querySelectorAll('.interactive-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: 200,
+                        behavior: 'smooth'
+                    });
+                }, 100);
+            });
+        });
+
+        // Inisialisasi - tampilkan semua saat pertama kali load
+        window.addEventListener('load', function() {
+            showAll();
+        });
+    </script>
+</body>
+</html>

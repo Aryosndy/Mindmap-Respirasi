@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindmap: Fotosintesis Akuatik dalam Siklus Biogeokimia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .mindmap-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 1400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mindmap-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e0e0e0" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .mindmap {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: auto auto auto auto auto;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .central-node {
+            grid-column: 2;
+            grid-row: 2;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 50%;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(79, 172, 254, 0.3);
+            animation: pulse 3s ease-in-out infinite;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .central-node h1 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .central-node p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .branch {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .branch:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .branch h2 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .branch ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .branch li {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #34495e;
+        }
+
+        .branch li::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: inherit;
+        }
+
+        /* Color scheme for different branches */
+        .environment { border-left-color: #27ae60; }
+        .environment h2 { color: #27ae60; }
+        .environment li::before { color: #27ae60; }
+
+        .adaptation { border-left-color: #e74c3c; }
+        .adaptation h2 { color: #e74c3c; }
+        .adaptation li::before { color: #e74c3c; }
+
+        .measurement { border-left-color: #f39c12; }
+        .measurement h2 { color: #f39c12; }
+        .measurement li::before { color: #f39c12; }
+
+        .dynamics { border-left-color: #9b59b6; }
+        .dynamics h2 { color: #9b59b6; }
+        .dynamics li::before { color: #9b59b6; }
+
+        .cycles { border-left-color: #3498db; }
+        .cycles h2 { color: #3498db; }
+        .cycles li::before { color: #3498db; }
+
+        .evolution { border-left-color: #1abc9c; }
+        .evolution h2 { color: #1abc9c; }
+        .evolution li::before { color: #1abc9c; }
+
+        .climate { border-left-color: #e67e22; }
+        .climate h2 { color: #e67e22; }
+        .climate li::before { color: #e67e22; }
+
+        .global-impact { border-left-color: #8e44ad; }
+        .global-impact h2 { color: #8e44ad; }
+        .global-impact li::before { color: #8e44ad; }
+
+        /* Add new branches for HAB and monitoring */
+        .hab-disasters { border-left-color: #dc3545; }
+        .hab-disasters h2 { color: #dc3545; }
+        .hab-disasters li::before { color: #dc3545; }
+
+        .fish-phyto { border-left-color: #20c997; }
+        .fish-phyto h2 { color: #20c997; }
+        .fish-phyto li::before { color: #20c997; }
+
+        .monitoring { border-left-color: #6f42c1; }
+        .monitoring h2 { color: #6f42c1; }
+        .monitoring li::before { color: #6f42c1; }
+
+        /* Add new branch for recent research */
+        .recent-research { border-left-color: #ff6b6b; }
+        .recent-research h2 { color: #ff6b6b; }
+        .recent-research li::before { color: #ff6b6b; }
+
+        /* Grid positioning - updated for 4 rows */
+        .environment { grid-column: 1; grid-row: 1; }
+        .adaptation { grid-column: 3; grid-row: 1; }
+        .measurement { grid-column: 1; grid-row: 2; }
+        .dynamics { grid-column: 3; grid-row: 2; }
+        .cycles { grid-column: 1; grid-row: 3; }
+        .evolution { grid-column: 2; grid-row: 1; }
+        .climate { grid-column: 2; grid-row: 3; }
+        .global-impact { grid-column: 3; grid-row: 3; }
+        .recent-research { grid-column: 1; grid-row: 4; }
+        .hab-disasters { grid-column: 2; grid-row: 4; }
+        .fish-phyto { grid-column: 3; grid-row: 4; }
+        .monitoring { grid-column: 2; grid-row: 5; }
+
+        /* Connecting lines */
+        .connector {
+            position: absolute;
+            background: linear-gradient(45deg, #ddd, #bbb);
+            height: 2px;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        @media (max-width: 1200px) {
+            .mindmap {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto auto auto auto;
+            }
+            
+            .central-node { grid-column: 1 / -1; grid-row: 1; }
+            .environment { grid-column: 1; grid-row: 2; }
+            .adaptation { grid-column: 2; grid-row: 2; }
+            .measurement { grid-column: 1; grid-row: 3; }
+            .dynamics { grid-column: 2; grid-row: 3; }
+            .cycles { grid-column: 1; grid-row: 4; }
+            .evolution { grid-column: 2; grid-row: 4; }
+            .climate { grid-column: 1; grid-row: 5; }
+            .global-impact { grid-column: 2; grid-row: 5; }
+        }
+
+        @media (max-width: 768px) {
+            .mindmap {
+                grid-template-columns: 1fr;
+            }
+            
+            .central-node,
+            .environment,
+            .adaptation,
+            .measurement,
+            .dynamics,
+            .cycles,
+            .evolution,
+            .climate,
+            .global-impact {
+                grid-column: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mindmap-container">
+        <div class="subtitle">Aryo Sandy Prasetyo_230210240028</div>
+        
+                    <div class="mindmap">
+            <div class="central-node">
+                <h1>FOTOSINTESIS AKUATIK</h1>
+                <p>Produksi Primer & Siklus Biogeokimia</p>
+            </div>
+
+            <div class="branch environment">
+                <h2>🌊 Variabilitas Lingkungan</h2>
+                <ul>
+                    <li>Faktor yang dapat diprediksi (jalur matahari harian & musiman)</li>
+                    <li>Faktor tak terduga (tutupan awan, kondisi atmosfer)</li>
+                    <li>Modifikasi cahaya dalam air (penyerapan & penyebaran)</li>
+                    <li>Pengaruh organisme fotosintetik terhadap penetrasi cahaya</li>
+                </ul>
+            </div>
+
+            <div class="branch adaptation">
+                <h2>🔄 Adaptasi Temporal</h2>
+                <ul>
+                    <li><strong>Jangka Pendek:</strong> Respon fisiologis & biokimia (acclimation)</li>
+                    <li>Adaptasi terhadap cahaya, suhu, dan nutrien</li>
+                    <li><strong>Jangka Panjang:</strong> Adaptasi ekologis & evolusioner</li>
+                    <li>Seleksi alami dalam skala waktu geologis</li>
+                </ul>
+            </div>
+
+            <div class="branch measurement">
+                <h2>📊 Metode Pengukuran</h2>
+                <ul>
+                    <li>Pengukuran laju fotosintesis melalui O₂ dan CO₂</li>
+                    <li>Radioisotop karbon-14 dan oksigen-18</li>
+                    <li>Produksi primer bruto vs bersih</li>
+                    <li>Teknik fluorometri dan spektroskopi</li>
+                </ul>
+            </div>
+
+            <div class="branch dynamics">
+                <h2>🌀 Dinamika Spasial</h2>
+                <ul>
+                    <li><strong>Vertikal:</strong> Penetrasi cahaya & gradien nutrien</li>
+                    <li><strong>Horizontal:</strong> Arus laut, eddies, pencampuran massa air</li>
+                    <li>Stres nutrien di wilayah oligotrofik</li>
+                    <li>Efisiensi fotosintesis yang menurun</li>
+                </ul>
+            </div>
+
+            <div class="branch cycles">
+                <h2>♻️ Siklus Biogeokimia</h2>
+                <ul>
+                    <li><strong>Siklus Karbon:</strong> 40% produksi primer global</li>
+                    <li><strong>Siklus Nitrogen:</strong> Fiksasi & denitrifikasi</li>
+                    <li><strong>Siklus Fosfor:</strong> Limiting nutrient</li>
+                    <li><strong>Siklus Oksigen:</strong> Oksidasi besi & sulfur purba</li>
+                    <li>Biological Carbon Pump (BCP)</li>
+                </ul>
+            </div>
+
+            <div class="branch evolution">
+                <h2>🧬 Keanekaragaman Evolusioner</h2>
+                <ul>
+                    <li>Jarak evolusioner besar antar taksa akuatik</li>
+                    <li>Adaptasi biochemical pada mikroalga & cyanobacteria</li>
+                    <li>Plastisitas ekologis yang luas</li>
+                    <li>Penguasaan habitat yang beragam</li>
+                </ul>
+            </div>
+
+            <div class="branch climate">
+                <h2>🌡️ Dampak Perubahan Iklim</h2>
+                <ul>
+                    <li><strong>Asamifikasi Laut:</strong> Penurunan pH akibat CO₂</li>
+                    <li>Dampak pada kokolitofor & karang</li>
+                    <li>Dimetil sulfida (DMS) & pembentukan awan</li>
+                    <li>Regulasi albedo & iklim global</li>
+                    <li><strong>Arktik:</strong> Produktivitas meningkat 60% dalam 2 dekade</li>
+                    <li>Penurunan es laut = peningkatan area terbuka</li>
+                    <li>Musim tumbuh yang lebih panjang</li>
+                </ul>
+            </div>
+
+            <div class="branch global-impact">
+                <h2>🌍 Dampak Global & Tren Terkini</h2>
+                <ul>
+                    <li>Kontribusi 30-50 miliar ton C/tahun</li>
+                    <li>Hanya 1-2% biomassa tumbuhan global</li>
+                    <li>Pengaturan gas rumah kaca atmosfer</li>
+                    <li>Uniformitarianisme: proses masa lalu masih berlanjut</li>
+                    <li><strong>Marine Snow:</strong> 80% biomass tenggelam & sekuestrasi CO₂</li>
+                    <li><strong>Fast Carbon Cycle:</strong> Skala hari-minggu vs dekade</li>
+                    <li>UN Plankton Manifesto: Triple planetary crisis</li>
+                </ul>
+            </div>
+
+            <div class="branch recent-research">
+                <h2>🔬 Penelitian Terkini 2024</h2>
+                <ul>
+                    <li><strong>Twilight Zone Coupling:</strong> Zona twilight mempengaruhi respon ekosistem permukaan</li>
+                    <li><strong>Phytoplankton Light Absorption:</strong> Peran biogeofisik dalam RCP scenarios</li>
+                    <li><strong>Southern Ocean:</strong> Produktivitas primer prediksi naik 30%</li>
+                    <li><strong>Arctic Phenology:</strong> Perubahan timing bloom & borealization</li>
+                    <li><strong>CO₂-Carbonic Model:</strong> Rasio carbon:chlorophyll baru</li>
+                    <li>Perubahan struktur komunitas plankton</li>
+                </ul>
+            </div>
+
+            <div class="branch hab-disasters">
+                <h2>☠️ HAB & Mitigasi Bencana Laut</h2>
+                <ul>
+                    <li><strong>Harmful Algal Blooms:</strong> Pertumbuhan masif fitoplankton berbahaya</li>
+                    <li><strong>Penyebab HAB:</strong> Eutrofikasi, perubahan iklim, stratifikasi air</li>
+                    <li><strong>Dampak:</strong> Kematian ikan massal, penurunan kualitas air</li>
+                    <li><strong>Kerugian ekonomi:</strong> Perikanan & pariwisata</li>
+                    <li><strong>Red Tide:</strong> Bloom Karenia brevis & spesies toksik lainnya</li>
+                    <li>Ancaman kesehatan manusia via bioakumulasi toksin</li>
+                </ul>
+            </div>
+
+            <div class="branch fish-phyto">
+                <h2>🐟 FishPhyto & CFP</h2>
+                <ul>
+                    <li><strong>Hubungan Ikan-Fitoplankton:</strong> Basis rantai makanan laut</li>
+                    <li><strong>Ciguatera Fish Poisoning:</strong> Toksin dari Gambierdiscus</li>
+                    <li><strong>Ciguatoksin:</strong> Stabil pada suhu tinggi, tidak hancur saat dimasak</li>
+                    <li><strong>Gejala CFP:</strong> Gangguan neurologis & pencernaan</li>
+                    <li><strong>Distribusi:</strong> Perairan tropis & subtropis</li>
+                    <li>Bioakumulasi melalui predator top (barracuda, grouper)</li>
+                </ul>
+            </div>
+
+            <div class="branch monitoring">
+                <h2>📡 Marine Environmental Monitoring</h2>
+                <ul>
+                    <li><strong>Sensor In Situ:</strong> pH, suhu, O₂, klorofil-a real-time</li>
+                    <li><strong>Remote Sensing:</strong> Satelit untuk deteksi bloom besar</li>
+                    <li><strong>Biomonitoring:</strong> Kerang, ikan karang sebagai indikator</li>
+                    <li><strong>Early Warning System:</strong> Sistem peringatan dini HAB & CFP</li>
+                    <li><strong>Integrasi Data:</strong> AI/ML untuk prediksi bloom</li>
+                    <li><strong>Manajemen Risiko:</strong> Penutupan area perikanan & edukasi</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add subtle animations on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const branches = document.querySelectorAll('.branch');
+            branches.forEach((branch, index) => {
+                branch.style.opacity = '0';
+                branch.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    branch.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    branch.style.opacity = '1';
+                    branch.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+
+        // Add click interactions
+        document.querySelectorAll('.branch').forEach(branch => {
+            branch.addEventListener('click', function() {
+                this.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
