@@ -253,7 +253,7 @@
 <body>
     <div class="container">
         <h1 class="title">🧬 Mindmap Respirasi</h1>
-<h2> Aryo Sandy Prasetyo - 230210240028 </h2>
+<h2 style="text-align: center;">Aryo Sandy Prasetyo - 230210240028</h2>
 
         
         <div class="interactive-controls" style="text-align: center; margin-bottom: 30px;">
