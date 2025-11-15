@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mindmap Biokimia Interaktif</title>
+    <title>Infografis Uji Fitokimia Steroid</title>
     <style>
         * {
             margin: 0;
@@ -13,69 +13,202 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            background: #f0f0f0;
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
+        .infographic {
+            width: 800px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
 
-        .title {
+        .header {
+            background: linear-gradient(135deg, #0077BE, #00BCD4);
+            padding: 40px;
             text-align: center;
-            color: #2c3e50;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .mindmap {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .main-branch {
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
-            border-radius: 15px;
-            padding: 25px;
             color: white;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
         }
 
-        .main-branch:hover {
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: wave 20s linear infinite;
+        }
+
+        @keyframes wave {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50%, 50%); }
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            opacity: 0.95;
+        }
+
+        .team {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+        }
+
+        .team h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .team-member {
+            font-size: 13px;
+            margin: 5px 0;
+            opacity: 0.95;
+        }
+
+        .content {
+            background: white;
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #0077BE, #00BCD4);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,119,190,0.3);
+        }
+
+        .icon {
+            font-size: 28px;
+        }
+
+        .text-content {
+            line-height: 1.8;
+            color: #333;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #E3F2FD, #B3E5FC);
+            border-left: 5px solid #0077BE;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .highlight-box strong {
+            color: #0077BE;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
-        .respirasi {
-            background: linear-gradient(135deg, #FF6B6B, #EE5A24);
+        .card h4 {
+            color: #0077BE;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .autotrofi {
-            background: linear-gradient(135deg, #4ECDC4, #44A08D);
+        .card ul {
+            list-style: none;
+            padding: 0;
         }
 
-        .aerobik {
-            background: linear-gradient(135deg, #74b9ff, #0984e3);
+        .card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
         }
 
-        .anaerobik {
-            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+        .card li:last-child {
+            border-bottom: none;
         }
 
-        .branch-title {
-            font-size: 1.8em;
+        .card li::before {
+            content: "✓";
+            color: #00BCD4;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .method-box {
+            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 3px solid #FF9800;
+        }
+
+        .method-title {
+            color: #E65100;
+            font-size: 20px;
             font-weight: bold;
             margin-bottom: 15px;
             display: flex;
@@ -83,488 +216,352 @@
             gap: 10px;
         }
 
-        .emoji {
-            font-size: 1.2em;
-        }
-
-        .sub-branch {
-            background: rgba(255, 255, 255, 0.2);
+        .steps {
+            background: white;
             border-radius: 10px;
             padding: 15px;
             margin: 15px 0;
-            border-left: 4px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
         }
 
-        .sub-branch:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateX(5px);
-        }
-
-        .reaction {
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 10px;
-            margin: 10px 0;
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            border: 2px dashed rgba(255, 255, 255, 0.3);
-        }
-
-        .results {
+        .step {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
+            align-items: start;
+            margin: 12px 0;
+            gap: 12px;
         }
 
-        .result-item {
-            background: rgba(255, 255, 255, 0.3);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .comparison-table {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 30px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .step-number {
+            background: linear-gradient(135deg, #0077BE, #00BCD4);
             color: white;
-            font-weight: bold;
-        }
-
-        tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-
-        tr:hover {
-            background: #e3f2fd;
-            transition: all 0.3s ease;
-        }
-
-        .tips {
-            background: linear-gradient(135deg, #FFD93D, #FF6B35);
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 30px;
-            color: white;
-        }
-
-        .tip-item {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            padding: 10px;
-            margin: 8px 0;
-            border-left: 4px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .interactive-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            margin: 10px 5px;
-        }
-
-        .interactive-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .mindmap {
-                grid-template-columns: 1fr;
-            }
-            
-            .title {
-                font-size: 2em;
-            }
-            
-            .branch-title {
-                font-size: 1.5em;
-            }
-        }
-
-        .cycle-diagram {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .cycle-flow {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
             display: flex;
-            justify-content: space-around;
             align-items: center;
-            flex-wrap: wrap;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(0,119,190,0.4);
+        }
+
+        .step-text {
+            flex: 1;
+            padding-top: 4px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .result-positive {
+            background: linear-gradient(135deg, #C8E6C9, #A5D6A7);
+            border: 3px solid #4CAF50;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .result-positive strong {
+            color: #2E7D32;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .result-text {
+            color: #1B5E20;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
+            border-left: 5px solid #F44336;
+            padding: 20px;
+            border-radius: 10px;
             margin: 20px 0;
         }
 
-        .cycle-step {
-            background: linear-gradient(135deg, #4ECDC4, #44A08D);
-            color: white;
-            padding: 15px;
+        .warning-box li {
+            margin: 10px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .references {
+            background: #f8f9fa;
+            padding: 20px;
             border-radius: 10px;
-            margin: 10px;
-            flex: 1;
-            min-width: 150px;
-            transition: all 0.3s ease;
+            border: 2px solid #dee2e6;
         }
 
-        .cycle-step:hover {
-            transform: scale(1.05);
+        .references ol {
+            padding-left: 20px;
         }
 
-        .arrow {
-            font-size: 2em;
-            color: #667eea;
-            margin: 0 10px;
+        .references li {
+            margin: 12px 0;
+            line-height: 1.7;
+            font-size: 13px;
+            color: #495057;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #0077BE, #00BCD4);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 14px;
+        }
+
+        .footer strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .molecule-bg {
+            opacity: 0.05;
+            position: absolute;
+            font-size: 200px;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .infographic {
+                box-shadow: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">🧬 MINDMAP BIOKIMIA INTERAKTIF</h1>
-        
-        <div class="interactive-controls" style="text-align: center; margin-bottom: 30px;">
-            <button class="interactive-btn" onclick="toggleSection('respirasi')">🫁 Respirasi</button>
-            <button class="interactive-btn" onclick="toggleSection('autotrofi')">🌱 Autotrofi</button>
-            <button class="interactive-btn" onclick="toggleSection('comparison')">📊 Perbandingan</button>
-            <button class="interactive-btn" onclick="showAll()">🔍 Tampilkan Semua</button>
+    <div class="infographic">
+        <!-- Header -->
+        <div class="header">
+            <h1>🧬 UJI FITOKIMIA KUALITATIF</h1>
+            <div class="subtitle">SENYAWA STEROID DARI ORGANISME LAUT</div>
+            <div class="team">
+                <h3>Kelompok [Nomor] - Kelas [A/B]</h3>
+                <div class="team-member">1. [Nama Lengkap] - [NPM]</div>
+                <div class="team-member">2. [Nama Lengkap] - [NPM]</div>
+                <div class="team-member">3. [Nama Lengkap] - [NPM]</div>
+                <div class="team-member">4. [Nama Lengkap] - [NPM]</div>
+            </div>
         </div>
 
-        <div class="mindmap" id="respirasi-section">
-            <!-- RESPIRASI AEROBIK -->
-            <div class="main-branch aerobik">
-                <div class="branch-title">
-                    <span class="emoji">🌬️</span>
-                    RESPIRASI AEROBIK
+        <!-- Content -->
+        <div class="content">
+            <!-- Pengertian -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🔬</span>
+                    APA ITU STEROID?
+                </div>
+                <div class="text-content">
+                    Steroid adalah senyawa organik lipid dengan struktur inti <strong>siklopentanoperhidrofenantren</strong> yang terdiri dari 4 cincin karbon (3 cincin sikloheksana dan 1 cincin siklopentana).
                 </div>
                 
-                <div class="sub-branch">
-                    <strong>Membutuhkan O₂ (Oksigen)</strong>
-                    <div class="reaction">
-                        C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + 38 ATP
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>📋 KARAKTERISTIK</h4>
+                        <ul>
+                            <li>Senyawa lipofilik (larut lemak)</li>
+                            <li>Memiliki gugus hidroksil (-OH)</li>
+                            <li>Struktur multi-cincin kaku</li>
+                            <li>Berat molekul tinggi</li>
+                        </ul>
                     </div>
-                </div>
-
-                <div class="sub-branch">
-                    <strong>🔄 Tahapan:</strong>
-                    <div style="margin-top: 10px;">
-                        <div><strong>1. Glikolisis</strong> (sitoplasma) → 2 ATP + 2 NADH</div>
-                        <div><strong>2. Siklus Krebs</strong> (matriks mitokondria) → 2 ATP + 6 NADH + 2 FADH₂</div>
-                        <div><strong>3. Transport Elektron</strong> (membran dalam) → 34 ATP</div>
+                    <div class="card">
+                        <h4>💊 MANFAAT BIOAKTIF</h4>
+                        <ul>
+                            <li>Anti-inflamasi</li>
+                            <li>Antibakteri</li>
+                            <li>Antioksidan</li>
+                            <li>Antikanker</li>
+                        </ul>
                     </div>
-                </div>
-
-                <div class="results">
-                    <div class="result-item">Total: 38 ATP</div>
-                    <div class="result-item">Efisien</div>
-                    <div class="result-item">Butuh O₂</div>
                 </div>
             </div>
 
-            <!-- RESPIRASI ANAEROBIK -->
-            <div class="main-branch anaerobik">
-                <div class="branch-title">
-                    <span class="emoji">🚫</span>
-                    RESPIRASI ANAEROBIK
+            <!-- Organisme Laut -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🌊</span>
+                    ORGANISME LAUT PENGHASIL STEROID
                 </div>
                 
-                <div class="sub-branch">
-                    <strong>Tanpa O₂ (Oksigen)</strong>
-                    <div class="reaction">
-                        Fermentasi Alkohol:<br>
-                        C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂ + 2 ATP
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>🌿 MAKROALGA</h4>
+                        <ul>
+                            <li>Sargassum sp.</li>
+                            <li>Turbinaria sp.</li>
+                            <li>Padina sp.</li>
+                            <li>Ulva sp.</li>
+                        </ul>
                     </div>
-                    <div class="reaction">
-                        Fermentasi Asam Laktat:<br>
-                        C₆H₁₂O₆ → 2C₃H₆O₃ + 2 ATP
+                    <div class="card">
+                        <h4>🦠 MIKROALGA</h4>
+                        <ul>
+                            <li>Dunaliella salina</li>
+                            <li>Chlorella vulgaris</li>
+                            <li>Nannochloropsis sp.</li>
+                            <li>Spirulina platensis</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="sub-branch">
-                    <strong>🍎 Hasil Produk:</strong>
-                    <div style="margin-top: 10px;">
-                        <div><strong>• Etanol (alkohol)</strong> - Ragi, wine, roti</div>
-                        <div><strong>• Asam laktat</strong> - Yogurt, keju, otot lelah</div>
-                        <div><strong>• Asam asetat</strong> - Cuka fermentasi</div>
-                    </div>
+                <div class="highlight-box">
+                    <strong>🐚 INVERTEBRATA LAUT:</strong>
+                    Spons (Haliclona sp., Petrosia sp.) • Karang Lunak (Sinularia sp.) • Teripang (Holothuria sp.) • Bintang Laut (Asteroidea)
+                </div>
+            </div>
+
+            <!-- Metode 1 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🧪</span>
+                    METODE UJI 1: LIEBERMANN-BURCHARD
                 </div>
 
-                <div class="results">
-                    <div class="result-item">Total: 2 ATP</div>
-                    <div class="result-item">Kurang efisien</div>
-                    <div class="result-item">Tanpa O₂</div>
+                <div class="method-box">
+                    <div class="method-title">⚗️ REAGEN</div>
+                    <div class="text-content">
+                        • Asam asetat anhidrat (CH₃CO)₂O<br>
+                        • Asam sulfat pekat (H₂SO₄)
+                    </div>
+
+                    <div class="method-title">📝 PROSEDUR</div>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-text">Masukkan ekstrak sampel ke dalam tabung reaksi</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-text">Tambahkan 2 mL asam asetat anhidrat, kocok hingga homogen</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-text">Tambahkan 1-2 tetes H₂SO₄ pekat melalui dinding tabung (hati-hati!)</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-text">Amati perubahan warna yang terjadi</div>
+                        </div>
+                    </div>
+
+                    <div class="method-title">⚛️ REAKSI KIMIA</div>
+                    <div class="text-content">
+                        Oksidasi gugus hidroksil (-OH) pada struktur steroid membentuk senyawa terkonjugasi berwarna
+                    </div>
+
+                    <div class="result-positive">
+                        <strong>✅ HASIL POSITIF</strong>
+                        <div class="result-text">Terbentuk warna HIJAU atau BIRU KEHIJAUAN<br>
+                        Intensitas warna menunjukkan konsentrasi steroid</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metode 2 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🧪</span>
+                    METODE UJI 2: SALKOWSKI
+                </div>
+
+                <div class="method-box">
+                    <div class="method-title">⚗️ REAGEN</div>
+                    <div class="text-content">
+                        • Kloroform (CHCl₃)<br>
+                        • Asam sulfat pekat (H₂SO₄)
+                    </div>
+
+                    <div class="method-title">📝 PROSEDUR</div>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-text">Masukkan ekstrak sampel ke dalam tabung reaksi</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-text">Tambahkan 2 mL kloroform, kocok perlahan</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-text">Tambahkan H₂SO₄ pekat hati-hati melalui dinding tabung (membentuk 2 lapisan)</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-text">Diamkan dan amati batas antar lapisan (interfase)</div>
+                        </div>
+                    </div>
+
+                    <div class="method-title">⚛️ REAKSI KIMIA</div>
+                    <div class="text-content">
+                        Dehidrasi dan oksidasi molekul steroid dalam kondisi asam kuat menghasilkan senyawa berwarna
+                    </div>
+
+                    <div class="result-positive">
+                        <strong>✅ HASIL POSITIF</strong>
+                        <div class="result-text">Terbentuk CINCIN MERAH atau COKLAT KEMERAHAN<br>
+                        pada batas kedua lapisan (interfase)<br>
+                        Lapisan atas (H₂SO₄): kuning keemasan<br>
+                        Lapisan bawah (kloroform): merah/coklat</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Warning -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">⚠️</span>
+                    HAL YANG PERLU DIPERHATIKAN
+                </div>
+
+                <div class="warning-box">
+                    <ul>
+                        <li>🔴 H₂SO₄ pekat bersifat korosif - gunakan dengan hati-hati!</li>
+                        <li>🔴 Kerjakan di ruang berventilasi baik (asap berbahaya)</li>
+                        <li>🔴 Gunakan APD lengkap (jas lab, sarung tangan, kacamata)</li>
+                        <li>🔴 Reaksi menghasilkan panas - hindari wadah tertutup</li>
+                        <li>✅ Uji positif harus dikonfirmasi dengan metode lain</li>
+                        <li>✅ Ekstraksi sampel gunakan pelarut organik</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Referensi -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">📚</span>
+                    REFERENSI
+                </div>
+
+                <div class="references">
+                    <ol>
+                        <li>Harborne, J.B. (1987). <em>Metode Fitokimia: Penuntun Cara Modern Menganalisis Tumbuhan</em>. Terbitan Kedua. Bandung: Penerbit ITB.</li>
+                        <li>Zhao, C., Yang, C., Liu, B., Lin, L., Sarker, S.D., Nahar, L., Yu, H., Cao, H., & Xiao, J. (2018). Bioactive compounds from marine macroalgae and their hypoglycemic benefits. <em>Trends in Food Science & Technology</em>, 72, 1-12.</li>
+                        <li>Ergene, A., Guler, P., Tan, S., Mirici, S., Hamzaoglu, E., & Duran, A. (2006). Antibacterial and antifungal activity of Heracleum sphondylium. <em>African Journal of Biotechnology</em>, 5(11), 1087-1089.</li>
+                    </ol>
                 </div>
             </div>
         </div>
 
-        <div class="mindmap" id="autotrofi-section">
-            <!-- FOTOAUTOTROFI -->
-            <div class="main-branch autotrofi">
-                <div class="branch-title">
-                    <span class="emoji">🌞</span>
-                    FOTOAUTOTROFI
-                </div>
-                
-                <div class="sub-branch">
-                    <strong>Menggunakan Cahaya</strong>
-                    <div class="reaction">
-                        6CO₂ + 6H₂O + cahaya → C₆H₁₂O₆ + 6O₂
-                    </div>
-                </div>
-
-                <div class="sub-branch">
-                    <strong>🌿 EUKARIOT:</strong>
-                    <div>• Tumbuhan hijau</div>
-                    <div>• Alga</div>
-                </div>
-
-                <div class="sub-branch">
-                    <strong>🦠 PROKARIOT:</strong>
-                    <div>• Cyanobacteria</div>
-                    <div>• Bakteri fotosintetik</div>
-                </div>
-
-                <div class="results">
-                    <div class="result-item">Menghasilkan O₂</div>
-                    <div class="result-item">Anabolisme</div>
-                    <div class="result-item">Butuh Cahaya</div>
-                </div>
+        <!-- Footer -->
+        <div class="footer">
+            <strong>Infografis Tugas KOBA - Kimia Organik Bahan Alam</strong>
+            <div>Instagram: @[username] | #FitokimiaLaut #SteroidAlami #KOBA</div>
+            <div style="margin-top: 10px; font-size: 12px;">
+                Tag: @_gerardoh_ @adrians_maulana @margat___ @sfraurelia
             </div>
-
-            <!-- KEMOAUTOTROFI -->
-            <div class="main-branch respirasi">
-                <div class="branch-title">
-                    <span class="emoji">⚗️</span>
-                    KEMOAUTOTROFI
-                </div>
-                
-                <div class="sub-branch">
-                    <strong>Menggunakan Energi Kimia</strong>
-                    <div class="reaction">
-                        CO₂ + 4H₂S + O₂ → CH₂O + 4S + 3H₂O
-                    </div>
-                </div>
-
-                <div class="sub-branch">
-                    <strong>🦠 PROKARIOT SAJA:</strong>
-                    <div>• Bakteri nitrifikasi (NH₃ → NO₃⁻)</div>
-                    <div>• Bakteri sulfur (H₂S → SO₄²⁻)</div>
-                    <div>• Bakteri besi (Fe²⁺ → Fe³⁺)</div>
-                    <div>• Bakteri metana (CH₄ → CO₂)</div>
-                </div>
-
-                <div class="sub-branch">
-                    <strong>🌊 Lokasi:</strong>
-                    <div>• Ventilasi hidrotermal laut dalam</div>
-                    <div>• Tanah (siklus nitrogen)</div>
-                    <div>• Lingkungan tanpa cahaya</div>
-                </div>
-
-                <div class="results">
-                    <div class="result-item">Tanpa Cahaya</div>
-                    <div class="result-item">Energi Kimia</div>
-                    <div class="result-item">Ekstrem</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SIKLUS KARBON-OKSIGEN -->
-        <div class="cycle-diagram" id="cycle-section">
-            <h2 style="color: #2c3e50; margin-bottom: 20px;">🔄 SIKLUS KARBON-OKSIGEN</h2>
-            <div class="cycle-flow">
-                <div class="cycle-step">
-                    <strong>FOTOSINTESIS</strong><br>
-                    CO₂ + H₂O → Glukosa + O₂
-                </div>
-                <div class="arrow">→</div>
-                <div class="cycle-step">
-                    <strong>RESPIRASI</strong><br>
-                    Glukosa + O₂ → CO₂ + H₂O + ATP
-                </div>
-            </div>
-            <div class="cycle-flow">
-                <div class="cycle-step">
-                    <strong>KEMOSINTESIS</strong><br>
-                    Energi kimia → Glukosa
-                </div>
-                <div class="arrow">↑</div>
-                <div class="cycle-step">
-                    <strong>FERMENTASI</strong><br>
-                    Glukosa → Produk + ATP
-                </div>
-            </div>
-        </div>
-
-        <!-- TABEL PERBANDINGAN -->
-        <div class="comparison-table" id="comparison-section">
-            <h2 style="color: #2c3e50;">📊 TABEL PERBANDINGAN</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Aspek</th>
-                        <th>Respirasi Aerobik</th>
-                        <th>Respirasi Anaerobik</th>
-                        <th>Fotosintesis</th>
-                        <th>Kemosintesis</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>O₂</strong></td>
-                        <td>Dibutuhkan ✅</td>
-                        <td>Tidak dibutuhkan ❌</td>
-                        <td>Dihasilkan 🟢</td>
-                        <td>Bervariasi 🔄</td>
-                    </tr>
-                    <tr>
-                        <td><strong>ATP</strong></td>
-                        <td>38 ATP 🔥</td>
-                        <td>2 ATP 🔋</td>
-                        <td>Menggunakan ATP 📉</td>
-                        <td>Menghasilkan ATP 📈</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Produk</strong></td>
-                        <td>CO₂ + H₂O</td>
-                        <td>Alkohol/Asam laktat</td>
-                        <td>Glukosa + O₂</td>
-                        <td>Glukosa</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Lokasi</strong></td>
-                        <td>Mitokondria</td>
-                        <td>Sitoplasma</td>
-                        <td>Kloroplas</td>
-                        <td>Sitoplasma</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Tipe</strong></td>
-                        <td>Katabolisme ⬇️</td>
-                        <td>Katabolisme ⬇️</td>
-                        <td>Anabolisme ⬆️</td>
-                        <td>Anabolisme ⬆️</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- TIPS MENGHAPAL -->
-        <div class="tips">
-            <h2 style="margin-bottom: 20px;">💡 TIPS MENGHAPAL</h2>
-            <div class="tip-item"><strong>Aerobik = Banyak ATP (38)</strong> - Seperti olahraga aerobik yang memberikan energi banyak!</div>
-            <div class="tip-item"><strong>Anaerobik = Sedikit ATP (2)</strong> - Tanpa oksigen, energi terbatas</div>
-            <div class="tip-item"><strong>Foto = Cahaya (Eukariot + Prokariot)</strong> - Foto butuh cahaya, bisa sel kompleks atau sederhana</div>
-            <div class="tip-item"><strong>Kemo = Kimia (Prokariot saja)</strong> - Reaksi kimia rumit, hanya bakteri yang bisa</div>
-            <div class="tip-item"><strong>Sintesis = Membuat (Anabolisme)</strong> - Sintesis = membangun</div>
-            <div class="tip-item"><strong>Respirasi = Memecah (Katabolisme)</strong> - Respirasi = mengurai untuk energi</div>
         </div>
     </div>
-
-    <script>
-        function toggleSection(section) {
-            const sections = ['respirasi-section', 'autotrofi-section', 'comparison-section', 'cycle-section'];
-            
-            sections.forEach(s => {
-                const element = document.getElementById(s);
-                if (element) {
-                    element.style.display = 'none';
-                }
-            });
-            
-            if (section === 'respirasi') {
-                document.getElementById('respirasi-section').style.display = 'grid';
-                document.getElementById('cycle-section').style.display = 'block';
-            } else if (section === 'autotrofi') {
-                document.getElementById('autotrofi-section').style.display = 'grid';
-                document.getElementById('cycle-section').style.display = 'block';
-            } else if (section === 'comparison') {
-                document.getElementById('comparison-section').style.display = 'block';
-            }
-        }
-        
-        function showAll() {
-            const sections = ['respirasi-section', 'autotrofi-section', 'comparison-section', 'cycle-section'];
-            sections.forEach(s => {
-                const element = document.getElementById(s);
-                if (element) {
-                    if (s.includes('section') && !s.includes('comparison') && !s.includes('cycle')) {
-                        element.style.display = 'grid';
-                    } else {
-                        element.style.display = 'block';
-                    }
-                }
-            });
-        }
-
-        // Animasi hover pada branch
-        document.querySelectorAll('.main-branch').forEach(branch => {
-            branch.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) rotateX(5deg)';
-            });
-            
-            branch.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) rotateX(0)';
-            });
-        });
-
-        // Efek klik pada sub-branch
-        document.querySelectorAll('.sub-branch').forEach(sub => {
-            sub.addEventListener('click', function() {
-                this.style.background = 'rgba(255, 255, 255, 0.4)';
-                setTimeout(() => {
-                    this.style.background = 'rgba(255, 255, 255, 0.2)';
-                }, 200);
-            });
-        });
-
-        // Auto-scroll smooth untuk navigasi
-        document.querySelectorAll('.interactive-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                setTimeout(() => {
-                    window.scrollTo({
-                        top: 200,
-                        behavior: 'smooth'
-                    });
-                }, 100);
-            });
-        });
-
-        // Inisialisasi - tampilkan semua saat pertama kali load
-        window.addEventListener('load', function() {
-            showAll();
-        });
-    </script>
 </body>
 </html>
