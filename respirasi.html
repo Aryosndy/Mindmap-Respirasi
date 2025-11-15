@@ -319,13 +319,32 @@
             font-size: 16px;
         }
 
-        .molecule-bg {
-            opacity: 0.05;
-            position: absolute;
-            font-size: 200px;
-            right: -50px;
-            top: 50%;
-            transform: translateY(-50%);
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #0077BE, #00BCD4);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .comparison-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
         }
 
         @media print {
@@ -363,7 +382,7 @@
                     APA ITU STEROID?
                 </div>
                 <div class="text-content">
-                    Steroid adalah senyawa organik lipid dengan struktur inti <strong>siklopentanoperhidrofenantren</strong> yang terdiri dari 4 cincin karbon (3 cincin sikloheksana dan 1 cincin siklopentana).
+                    Steroid adalah senyawa organik lipid dengan struktur inti <strong>siklopentanoperhidrofenantren</strong> yang terdiri dari 4 cincin karbon (3 cincin sikloheksana dan 1 cincin siklopentana). Steroid memiliki peran penting dalam sistem biologis organisme.
                 </div>
                 
                 <div class="grid-2">
@@ -373,7 +392,7 @@
                             <li>Senyawa lipofilik (larut lemak)</li>
                             <li>Memiliki gugus hidroksil (-OH)</li>
                             <li>Struktur multi-cincin kaku</li>
-                            <li>Berat molekul tinggi</li>
+                            <li>Non-polar hingga semi-polar</li>
                         </ul>
                     </div>
                     <div class="card">
@@ -418,121 +437,177 @@
 
                 <div class="highlight-box">
                     <strong>🐚 INVERTEBRATA LAUT:</strong>
-                    Spons (Haliclona sp., Petrosia sp.) • Karang Lunak (Sinularia sp.) • Teripang (Holothuria sp.) • Bintang Laut (Asteroidea)
+                    Spons (Haliclona sp., Petrosia sp.) • Karang Lunak (Sinularia sp., Lobophytum sp.) • Teripang (Holothuria sp.) • Bintang Laut • Ascidian
                 </div>
             </div>
 
-            <!-- Metode 1 -->
+            <!-- Metode Liebermann-Burchard -->
             <div class="section">
                 <div class="section-title">
                     <span class="icon">🧪</span>
-                    METODE UJI 1: LIEBERMANN-BURCHARD
+                    METODE UJI LIEBERMANN-BURCHARD
                 </div>
 
                 <div class="method-box">
                     <div class="method-title">⚗️ REAGEN</div>
                     <div class="text-content">
-                        • Asam asetat anhidrat (CH₃CO)₂O<br>
-                        • Asam sulfat pekat (H₂SO₄)
+                        • <strong>Asam Asetat Glasial</strong> (CH₃COOH)<br>
+                        • <strong>Asam Sulfat Pekat</strong> (H₂SO₄)
                     </div>
 
-                    <div class="method-title">📝 PROSEDUR</div>
+                    <div class="method-title">📝 PROSEDUR (Sampel Ekstrak)</div>
                     <div class="steps">
                         <div class="step">
                             <div class="step-number">1</div>
-                            <div class="step-text">Masukkan ekstrak sampel ke dalam tabung reaksi</div>
+                            <div class="step-text">Masukkan 0,05 g sampel ekstrak ke dalam tabung reaksi</div>
                         </div>
                         <div class="step">
                             <div class="step-number">2</div>
-                            <div class="step-text">Tambahkan 2 mL asam asetat anhidrat, kocok hingga homogen</div>
+                            <div class="step-text">Tambahkan 2 mL kloroform untuk melarutkan steroid</div>
                         </div>
                         <div class="step">
                             <div class="step-number">3</div>
-                            <div class="step-text">Tambahkan 1-2 tetes H₂SO₄ pekat melalui dinding tabung (hati-hati!)</div>
+                            <div class="step-text">Tambahkan 10 tetes asam asetat glasial</div>
                         </div>
                         <div class="step">
                             <div class="step-number">4</div>
+                            <div class="step-text">Tambahkan 3 tetes H₂SO₄ pekat melalui dinding tabung (hati-hati!)</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-text">Kocok perlahan dan diamkan beberapa menit</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">6</div>
                             <div class="step-text">Amati perubahan warna yang terjadi</div>
                         </div>
                     </div>
 
                     <div class="method-title">⚛️ REAKSI KIMIA</div>
                     <div class="text-content">
-                        Oksidasi gugus hidroksil (-OH) pada struktur steroid membentuk senyawa terkonjugasi berwarna
+                        Oksidasi dan dehidrasi gugus hidroksil (-OH) pada struktur steroid dalam kondisi asam kuat membentuk senyawa terkonjugasi berwarna. Asam sulfat berfungsi sebagai agen pengoksidasi yang kuat.
                     </div>
 
                     <div class="result-positive">
-                        <strong>✅ HASIL POSITIF</strong>
-                        <div class="result-text">Terbentuk warna HIJAU atau BIRU KEHIJAUAN<br>
-                        Intensitas warna menunjukkan konsentrasi steroid</div>
+                        <strong>✅ HASIL POSITIF STEROID</strong>
+                        <div class="result-text">
+                            Terbentuk warna <strong>BIRU KEHIJAUAN</strong><br>
+                            <span style="font-size: 13px; font-weight: normal;">(Triterpenoid: merah kecoklatan)</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Metode 2 -->
+            <!-- Metode Salkowski -->
             <div class="section">
                 <div class="section-title">
                     <span class="icon">🧪</span>
-                    METODE UJI 2: SALKOWSKI
+                    METODE UJI SALKOWSKI (ALTERNATIF)
                 </div>
 
                 <div class="method-box">
                     <div class="method-title">⚗️ REAGEN</div>
                     <div class="text-content">
-                        • Kloroform (CHCl₃)<br>
-                        • Asam sulfat pekat (H₂SO₄)
+                        • <strong>Kloroform</strong> (CHCl₃)<br>
+                        • <strong>Asam Sulfat Pekat</strong> (H₂SO₄)
                     </div>
 
                     <div class="method-title">📝 PROSEDUR</div>
                     <div class="steps">
                         <div class="step">
                             <div class="step-number">1</div>
-                            <div class="step-text">Masukkan ekstrak sampel ke dalam tabung reaksi</div>
+                            <div class="step-text">Larutkan sampel dengan 2 mL kloroform</div>
                         </div>
                         <div class="step">
                             <div class="step-number">2</div>
-                            <div class="step-text">Tambahkan 2 mL kloroform, kocok perlahan</div>
+                            <div class="step-text">Tambahkan H₂SO₄ pekat secara hati-hati melalui dinding tabung</div>
                         </div>
                         <div class="step">
                             <div class="step-number">3</div>
-                            <div class="step-text">Tambahkan H₂SO₄ pekat hati-hati melalui dinding tabung (membentuk 2 lapisan)</div>
+                            <div class="step-text">Akan terbentuk 2 lapisan berbeda (jangan dikocok)</div>
                         </div>
                         <div class="step">
                             <div class="step-number">4</div>
                             <div class="step-text">Diamkan dan amati batas antar lapisan (interfase)</div>
                         </div>
-                    </div>
+                    </steps>
 
                     <div class="method-title">⚛️ REAKSI KIMIA</div>
                     <div class="text-content">
-                        Dehidrasi dan oksidasi molekul steroid dalam kondisi asam kuat menghasilkan senyawa berwarna
+                        Dehidrasi dan oksidasi molekul steroid dalam kondisi asam kuat menghasilkan senyawa kromogen berwarna pada interfase kedua lapisan.
                     </div>
 
                     <div class="result-positive">
-                        <strong>✅ HASIL POSITIF</strong>
-                        <div class="result-text">Terbentuk CINCIN MERAH atau COKLAT KEMERAHAN<br>
-                        pada batas kedua lapisan (interfase)<br>
-                        Lapisan atas (H₂SO₄): kuning keemasan<br>
-                        Lapisan bawah (kloroform): merah/coklat</div>
+                        <strong>✅ HASIL POSITIF STEROID</strong>
+                        <div class="result-text">
+                            Terbentuk <strong>CINCIN MERAH/COKLAT</strong> pada batas lapisan<br>
+                            Lapisan atas: kuning keemasan | Lapisan bawah: merah/coklat
+                        </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Perbandingan -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">⚖️</span>
+                    PERBANDINGAN METODE UJI
+                </div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>ASPEK</th>
+                            <th>LIEBERMANN-BURCHARD</th>
+                            <th>SALKOWSKI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Reagen</strong></td>
+                            <td>Kloroform + Asam Asetat Glasial + H₂SO₄</td>
+                            <td>Kloroform + H₂SO₄</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Waktu</strong></td>
+                            <td>Cepat (< 5 menit)</td>
+                            <td>Cepat (< 5 menit)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hasil Positif Steroid</strong></td>
+                            <td>Biru kehijauan</td>
+                            <td>Cincin merah/coklat</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hasil Positif Triterpenoid</strong></td>
+                            <td>Merah kecoklatan</td>
+                            <td>Merah kecoklatan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sensitivitas</strong></td>
+                            <td>Sangat tinggi</td>
+                            <td>Tinggi</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <!-- Warning -->
             <div class="section">
                 <div class="section-title">
                     <span class="icon">⚠️</span>
-                    HAL YANG PERLU DIPERHATIKAN
+                    KESELAMATAN KERJA LABORATORIUM
                 </div>
 
                 <div class="warning-box">
                     <ul>
-                        <li>🔴 H₂SO₄ pekat bersifat korosif - gunakan dengan hati-hati!</li>
-                        <li>🔴 Kerjakan di ruang berventilasi baik (asap berbahaya)</li>
-                        <li>🔴 Gunakan APD lengkap (jas lab, sarung tangan, kacamata)</li>
-                        <li>🔴 Reaksi menghasilkan panas - hindari wadah tertutup</li>
-                        <li>✅ Uji positif harus dikonfirmasi dengan metode lain</li>
-                        <li>✅ Ekstraksi sampel gunakan pelarut organik</li>
+                        <li>🔴 <strong>H₂SO₄ pekat</strong>: Korosif, beracun, menimbulkan reaksi eksotermik dengan air</li>
+                        <li>🔴 <strong>Kloroform</strong>: Beracun, karsinogenik, menyebabkan iritasi</li>
+                        <li>🔴 <strong>Asam asetat glasial</strong>: Korosif, mudah terbakar, iritasi saluran pernapasan</li>
+                        <li>✅ Gunakan APD lengkap (jas lab, sarung tangan, kacamata)</li>
+                        <li>✅ Kerjakan di lemari asam atau ruang berventilasi baik</li>
+                        <li>✅ Reaksi menghasilkan panas - hindari wadah tertutup</li>
+                        <li>✅ Jika terkena zat kimia, cuci dengan air mengalir 10-15 menit</li>
                     </ul>
                 </div>
             </div>
@@ -546,9 +621,10 @@
 
                 <div class="references">
                     <ol>
+                        <li>Bachtiar, E., Pasaribu, B., Mulyani, Y., & Sundari, E.R. (2025). <em>Modul Praktikum Kimia Organik Bahan Alam Laut</em>. Program Studi Ilmu Kelautan, Fakultas Perikanan dan Ilmu Kelautan, Universitas Padjadjaran.</li>
                         <li>Harborne, J.B. (1987). <em>Metode Fitokimia: Penuntun Cara Modern Menganalisis Tumbuhan</em>. Terbitan Kedua. Bandung: Penerbit ITB.</li>
                         <li>Zhao, C., Yang, C., Liu, B., Lin, L., Sarker, S.D., Nahar, L., Yu, H., Cao, H., & Xiao, J. (2018). Bioactive compounds from marine macroalgae and their hypoglycemic benefits. <em>Trends in Food Science & Technology</em>, 72, 1-12.</li>
-                        <li>Ergene, A., Guler, P., Tan, S., Mirici, S., Hamzaoglu, E., & Duran, A. (2006). Antibacterial and antifungal activity of Heracleum sphondylium. <em>African Journal of Biotechnology</em>, 5(11), 1087-1089.</li>
+                        <li>Devi, K.P., Suganthy, N., Kesika, P., & Pandian, S.K. (2008). Bioprotective properties of seaweeds: In vitro evaluation of antioxidant activity and antimicrobial activity against food borne bacteria in relation to polyphenolic content. <em>BMC Complementary and Alternative Medicine</em>, 8(1), 38.</li>
                     </ol>
                 </div>
             </div>
@@ -556,10 +632,13 @@
 
         <!-- Footer -->
         <div class="footer">
-            <strong>Infografis Tugas KOBA - Kimia Organik Bahan Alam</strong>
-            <div>Instagram: @[username] | #FitokimiaLaut #SteroidAlami #KOBA</div>
+            <strong>Infografis Tugas Praktikum KOBA 2025</strong>
+            <div>Kimia Organik Bahan Alam Laut - Prodi Ilmu Kelautan FPIK UNPAD</div>
             <div style="margin-top: 10px; font-size: 12px;">
                 Tag: @_gerardoh_ @adrians_maulana @margat___ @sfraurelia
+            </div>
+            <div style="margin-top: 5px; font-size: 12px;">
+                #FitokimiaLaut #SteroidAlami #KOBA #IlmuKelautan #UNPAD
             </div>
         </div>
     </div>
