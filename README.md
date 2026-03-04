@@ -1,646 +1,725 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infografis Uji Fitokimia Steroid</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcard – Senyawa Non-Polar</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0f1e;
+    --surface: #111827;
+    --card-front: #0d1f3c;
+    --card-back: #0f2d1f;
+    --accent: #38f5c0;
+    --accent2: #5b8cff;
+    --accent3: #f5a623;
+    --text: #e8f0fe;
+    --muted: #7a8db0;
+    --border: rgba(56,245,192,0.18);
+  }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background: #f0f0f0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .infographic {
-            width: 800px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-        .header {
-            background: linear-gradient(135deg, #0077BE, #00BCD4);
-            padding: 40px;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
+  /* Animated background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 10%, rgba(56,245,192,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 80% 80%, rgba(91,140,255,0.08) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255,255,255,0.05) 10px,
-                rgba(255,255,255,0.05) 20px
-            );
-            animation: wave 20s linear infinite;
-        }
+  header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 2.5rem 1rem 1rem;
+  }
 
-        @keyframes wave {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50%, 50%); }
-        }
+  .badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    padding: 0.3em 1.1em;
+    margin-bottom: 1rem;
+  }
 
-        .header h1 {
-            font-size: 36px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 5vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-        .header .subtitle {
-            font-size: 18px;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-            opacity: 0.95;
-        }
+  .subtitle {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
 
-        .team {
-            background: rgba(255,255,255,0.2);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 15px;
-            position: relative;
-            z-index: 1;
-            backdrop-filter: blur(10px);
-        }
+  /* Progress */
+  .progress-wrap {
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+    margin: 1.5rem auto 0;
+    padding: 0 1.5rem;
+  }
 
-        .team h3 {
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
 
-        .team-member {
-            font-size: 13px;
-            margin: 5px 0;
-            opacity: 0.95;
-        }
+  .progress-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    overflow: hidden;
+  }
 
-        .content {
-            background: white;
-            padding: 40px;
-        }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 999px;
+    transition: width 0.4s ease;
+  }
 
-        .section {
-            margin-bottom: 35px;
-        }
+  /* Card scene */
+  .scene {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    perspective: 1200px;
+    cursor: pointer;
+  }
 
-        .section-title {
-            background: linear-gradient(135deg, #0077BE, #00BCD4);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(0,119,190,0.3);
-        }
+  .card-wrapper {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-        .icon {
-            font-size: 28px;
-        }
+  .card-wrapper.flipped {
+    transform: rotateY(180deg);
+  }
 
-        .text-content {
-            line-height: 1.8;
-            color: #333;
-            font-size: 15px;
-            margin-bottom: 15px;
-        }
+  .card-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 20px;
+    padding: 2rem 2.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    overflow: hidden;
+  }
 
-        .highlight-box {
-            background: linear-gradient(135deg, #E3F2FD, #B3E5FC);
-            border-left: 5px solid #0077BE;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
+  .card-face::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: radial-gradient(circle at 80% 20%, rgba(56,245,192,0.06), transparent 60%);
+    pointer-events: none;
+  }
 
-        .highlight-box strong {
-            color: #0077BE;
-            display: block;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
+  .card-front {
+    background: var(--card-front);
+  }
 
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 20px 0;
-        }
+  .card-back {
+    background: var(--card-back);
+    transform: rotateY(180deg);
+  }
 
-        .card {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 20px;
-            border: 2px solid #e0e0e0;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+  .card-category {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
+  .card-question {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text);
+  }
 
-        .card h4 {
-            color: #0077BE;
-            margin-bottom: 15px;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+  .card-hint {
+    position: absolute;
+    bottom: 1.2rem;
+    right: 1.5rem;
+    font-size: 0.7rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
 
-        .card ul {
-            list-style: none;
-            padding: 0;
-        }
+  .flip-icon {
+    width: 14px;
+    height: 14px;
+    opacity: 0.5;
+  }
 
-        .card li {
-            padding: 8px 0;
-            border-bottom: 1px solid #e0e0e0;
-            font-size: 14px;
-        }
+  .card-answer {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text);
+  }
 
-        .card li:last-child {
-            border-bottom: none;
-        }
+  .card-answer ul {
+    padding-left: 1.2rem;
+    margin-top: 0.4rem;
+  }
 
-        .card li::before {
-            content: "✓";
-            color: #00BCD4;
-            font-weight: bold;
-            margin-right: 8px;
-        }
+  .card-answer li {
+    margin-bottom: 0.3rem;
+  }
 
-        .method-box {
-            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-            border: 3px solid #FF9800;
-        }
+  .card-answer .tag {
+    display: inline-block;
+    background: rgba(56,245,192,0.12);
+    color: var(--accent);
+    border-radius: 6px;
+    padding: 0.1em 0.6em;
+    font-size: 0.78rem;
+    font-weight: 500;
+    margin: 0.15rem 0.1rem;
+  }
 
-        .method-title {
-            color: #E65100;
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+  .card-answer .highlight {
+    color: var(--accent);
+    font-weight: 600;
+  }
 
-        .steps {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 15px 0;
-        }
+  .card-answer table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+    margin-top: 0.5rem;
+  }
 
-        .step {
-            display: flex;
-            align-items: start;
-            margin: 12px 0;
-            gap: 12px;
-        }
+  .card-answer table th {
+    background: rgba(56,245,192,0.12);
+    color: var(--accent);
+    padding: 0.4rem 0.6rem;
+    text-align: left;
+    font-weight: 700;
+  }
 
-        .step-number {
-            background: linear-gradient(135deg, #0077BE, #00BCD4);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            flex-shrink: 0;
-            box-shadow: 0 3px 10px rgba(0,119,190,0.4);
-        }
+  .card-answer table td {
+    padding: 0.35rem 0.6rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
 
-        .step-text {
-            flex: 1;
-            padding-top: 4px;
-            font-size: 14px;
-            line-height: 1.6;
-        }
+  .card-answer table tr:last-child td {
+    border-bottom: none;
+  }
 
-        .result-positive {
-            background: linear-gradient(135deg, #C8E6C9, #A5D6A7);
-            border: 3px solid #4CAF50;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 15px 0;
-            text-align: center;
-        }
+  /* Controls */
+  .controls {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0 1.5rem 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
 
-        .result-positive strong {
-            color: #2E7D32;
-            font-size: 18px;
-            display: block;
-            margin-bottom: 10px;
-        }
+  .btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text);
+    border-radius: 12px;
+    padding: 0.75rem 1.8rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 
-        .result-text {
-            color: #1B5E20;
-            font-size: 15px;
-            font-weight: 600;
-        }
+  .btn:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+    transform: translateY(-1px);
+  }
 
-        .warning-box {
-            background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
-            border-left: 5px solid #F44336;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
+  .btn:active { transform: translateY(0); }
 
-        .warning-box li {
-            margin: 10px 0;
-            font-size: 14px;
-            line-height: 1.6;
-        }
+  .btn-primary {
+    background: var(--accent);
+    color: #0a0f1e;
+    border-color: var(--accent);
+    font-weight: 700;
+  }
 
-        .references {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            border: 2px solid #dee2e6;
-        }
+  .btn-primary:hover {
+    background: #5fffce;
+    border-color: #5fffce;
+    transform: translateY(-1px);
+  }
 
-        .references ol {
-            padding-left: 20px;
-        }
+  /* Thumbnail nav */
+  .nav-dots {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0 1.5rem 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
 
-        .references li {
-            margin: 12px 0;
-            line-height: 1.7;
-            font-size: 13px;
-            color: #495057;
-        }
+  .dot {
+    width: 28px;
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.1);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
 
-        .footer {
-            background: linear-gradient(135deg, #0077BE, #00BCD4);
-            color: white;
-            text-align: center;
-            padding: 25px;
-            font-size: 14px;
-        }
+  .dot.active {
+    background: var(--accent);
+    width: 36px;
+  }
 
-        .footer strong {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
+  .dot.visited {
+    background: rgba(56,245,192,0.35);
+  }
 
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 13px;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+  /* Category pills */
+  .category-nav {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0 1.5rem 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
 
-        .comparison-table th {
-            background: linear-gradient(135deg, #0077BE, #00BCD4);
-            color: white;
-            padding: 12px;
-            text-align: left;
-            font-weight: bold;
-        }
+  .cat-pill {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 0.35em 1em;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
 
-        .comparison-table td {
-            padding: 12px;
-            border-bottom: 1px solid #e0e0e0;
-        }
+  .cat-pill.active, .cat-pill:hover {
+    background: rgba(56,245,192,0.12);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
 
-        .comparison-table tr:hover {
-            background: #f8f9fa;
-        }
+  /* Streak */
+  .streak-row {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0 1.5rem 1.5rem;
+  }
 
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            .infographic {
-                box-shadow: none;
-            }
-        }
-    </style>
+  .stat-box {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .scene { animation: fadeUp 0.5s ease both; }
+</style>
 </head>
 <body>
-    <div class="infographic">
-        <!-- Header -->
-        <div class="header">
-            <h1>🧬 UJI FITOKIMIA KUALITATIF</h1>
-            <div class="subtitle">SENYAWA STEROID DARI ORGANISME LAUT</div>
-            <div class="team">
-                <h3>Kelompok [Nomor] - Kelas [A/B]</h3>
-                <div class="team-member">1. [Nama Lengkap] - [NPM]</div>
-                <div class="team-member">2. [Nama Lengkap] - [NPM]</div>
-                <div class="team-member">3. [Nama Lengkap] - [NPM]</div>
-                <div class="team-member">4. [Nama Lengkap] - [NPM]</div>
-            </div>
-        </div>
 
-        <!-- Content -->
-        <div class="content">
-            <!-- Pengertian -->
-            <div class="section">
-                <div class="section-title">
-                    <span class="icon">🔬</span>
-                    APA ITU STEROID?
-                </div>
-                <div class="text-content">
-                    Steroid adalah senyawa organik lipid dengan struktur inti <strong>siklopentanoperhidrofenantren</strong> yang terdiri dari 4 cincin karbon (3 cincin sikloheksana dan 1 cincin siklopentana). Steroid memiliki peran penting dalam sistem biologis organisme.
-                </div>
-                
-                <div class="grid-2">
-                    <div class="card">
-                        <h4>📋 KARAKTERISTIK</h4>
-                        <ul>
-                            <li>Senyawa lipofilik (larut lemak)</li>
-                            <li>Memiliki gugus hidroksil (-OH)</li>
-                            <li>Struktur multi-cincin kaku</li>
-                            <li>Non-polar hingga semi-polar</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h4>💊 MANFAAT BIOAKTIF</h4>
-                        <ul>
-                            <li>Anti-inflamasi</li>
-                            <li>Antibakteri</li>
-                            <li>Antioksidan</li>
-                            <li>Antikanker</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+<header>
+  <div class="badge">Teknologi Bahan Alam</div>
+  <h1>Senyawa Non-Polar</h1>
+  <p class="subtitle">Klik kartu untuk melihat jawaban &nbsp;·&nbsp; Navigasi dengan tombol di bawah</p>
+</header>
 
-            <!-- Organisme Laut -->
-            <div class="section">
-                <div class="section-title">
-                    <span class="icon">🌊</span>
-                    ORGANISME LAUT PENGHASIL STEROID
-                </div>
-                
-                <div class="grid-2">
-                    <div class="card">
-                        <h4>🌿 MAKROALGA</h4>
-                        <ul>
-                            <li>Sargassum sp.</li>
-                            <li>Turbinaria sp.</li>
-                            <li>Padina sp.</li>
-                            <li>Ulva sp.</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h4>🦠 MIKROALGA</h4>
-                        <ul>
-                            <li>Dunaliella salina</li>
-                            <li>Chlorella vulgaris</li>
-                            <li>Nannochloropsis sp.</li>
-                            <li>Spirulina platensis</li>
-                        </ul>
-                    </div>
-                </div>
+<div class="streak-row">
+  <div class="stat-box"><div class="stat-num" id="totalCards">15</div><div class="stat-label">Total Kartu</div></div>
+  <div class="stat-box"><div class="stat-num" id="visitedCount">0</div><div class="stat-label">Dipelajari</div></div>
+  <div class="stat-box"><div class="stat-num" id="currentNum">1</div><div class="stat-label">Sekarang</div></div>
+</div>
 
-                <div class="highlight-box">
-                    <strong>🐚 INVERTEBRATA LAUT:</strong>
-                    Spons (Haliclona sp., Petrosia sp.) • Karang Lunak (Sinularia sp., Lobophytum sp.) • Teripang (Holothuria sp.) • Bintang Laut • Ascidian
-                </div>
-            </div>
+<div class="progress-wrap">
+  <div class="progress-info">
+    <span id="progressLabel">Kartu 1 dari 15</span>
+    <span id="progressPct">0%</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+</div>
 
-            <!-- Metode Liebermann-Burchard -->
-            <div class="section">
-                <div class="section-title">
-                    <span class="icon">🧪</span>
-                    METODE UJI LIEBERMANN-BURCHARD
-                </div>
+<div class="category-nav" id="catNav"></div>
 
-                <div class="method-box">
-                    <div class="method-title">⚗️ REAGEN</div>
-                    <div class="text-content">
-                        • <strong>Asam Asetat Glasial</strong> (CH₃COOH)<br>
-                        • <strong>Asam Sulfat Pekat</strong> (H₂SO₄)
-                    </div>
-
-                    <div class="method-title">📝 PROSEDUR (Sampel Ekstrak)</div>
-                    <div class="steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <div class="step-text">Masukkan 0,05 g sampel ekstrak ke dalam tabung reaksi</div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <div class="step-text">Tambahkan 2 mL kloroform untuk melarutkan steroid</div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <div class="step-text">Tambahkan 10 tetes asam asetat glasial</div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">4</div>
-                            <div class="step-text">Tambahkan 3 tetes H₂SO₄ pekat melalui dinding tabung (hati-hati!)</div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">5</div>
-                            <div class="step-text">Kocok perlahan dan diamkan beberapa menit</div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">6</div>
-                            <div class="step-text">Amati perubahan warna yang terjadi</div>
-                        </div>
-                    </div>
-
-                    <div class="method-title">⚛️ REAKSI KIMIA</div>
-                    <div class="text-content">
-                        Oksidasi dan dehidrasi gugus hidroksil (-OH) pada struktur steroid dalam kondisi asam kuat membentuk senyawa terkonjugasi berwarna. Asam sulfat berfungsi sebagai agen pengoksidasi yang kuat.
-                    </div>
-
-                    <div class="result-positive">
-                        <strong>✅ HASIL POSITIF STEROID</strong>
-                        <div class="result-text">
-                            Terbentuk warna <strong>BIRU KEHIJAUAN</strong><br>
-                            <span style="font-size: 13px; font-weight: normal;">(Triterpenoid: merah kecoklatan)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Metode Salkowski -->
-            <div class="section">
-                <div class="section-title">
-                    <span class="icon">🧪</span>
-                    METODE UJI SALKOWSKI (ALTERNATIF)
-                </div>
-
-                <div class="method-box">
-                    <div class="method-title">⚗️ REAGEN</div>
-                    <div class="text-content">
-                        • <strong>Kloroform</strong> (CHCl₃)<br>
-                        • <strong>Asam Sulfat Pekat</strong> (H₂SO₄)
-                    </div>
-
-                    <div class="method-title">📝 PROSEDUR</div>
-                    <div class="steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <div class="step-text">Larutkan sampel dengan 2 mL kloroform</div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <div class="step-text">Tambahkan H₂SO₄ pekat secara hati-hati melalui dinding tabung</div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <div class="step-text">Akan terbentuk 2 lapisan berbeda (jangan dikocok)</div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">4</div>
-                            <div class="step-text">Diamkan dan amati batas antar lapisan (interfase)</div>
-                        </div>
-                    </steps>
-
-                    <div class="method-title">⚛️ REAKSI KIMIA</div>
-                    <div class="text-content">
-                        Dehidrasi dan oksidasi molekul steroid dalam kondisi asam kuat menghasilkan senyawa kromogen berwarna pada interfase kedua lapisan.
-                    </div>
-
-                    <div class="result-positive">
-                        <strong>✅ HASIL POSITIF STEROID</strong>
-                        <div class="result-text">
-                            Terbentuk <strong>CINCIN MERAH/COKLAT</strong> pada batas lapisan<br>
-                            Lapisan atas: kuning keemasan | Lapisan bawah: merah/coklat
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Perbandingan -->
-            <div class="section">
-                <div class="section-title">
-                    <span class="icon">⚖️</span>
-                    PERBANDINGAN METODE UJI
-                </div>
-
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>ASPEK</th>
-                            <th>LIEBERMANN-BURCHARD</th>
-                            <th>SALKOWSKI</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Reagen</strong></td>
-                            <td>Kloroform + Asam Asetat Glasial + H₂SO₄</td>
-                            <td>Kloroform + H₂SO₄</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Waktu</strong></td>
-                            <td>Cepat (< 5 menit)</td>
-                            <td>Cepat (< 5 menit)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Hasil Positif Steroid</strong></td>
-                            <td>Biru kehijauan</td>
-                            <td>Cincin merah/coklat</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Hasil Positif Triterpenoid</strong></td>
-                            <td>Merah kecoklatan</td>
-                            <td>Merah kecoklatan</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Sensitivitas</strong></td>
-                            <td>Sangat tinggi</td>
-                            <td>Tinggi</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Warning -->
-            <div class="section">
-                <div class="section-title">
-                    <span class="icon">⚠️</span>
-                    KESELAMATAN KERJA LABORATORIUM
-                </div>
-
-                <div class="warning-box">
-                    <ul>
-                        <li>🔴 <strong>H₂SO₄ pekat</strong>: Korosif, beracun, menimbulkan reaksi eksotermik dengan air</li>
-                        <li>🔴 <strong>Kloroform</strong>: Beracun, karsinogenik, menyebabkan iritasi</li>
-                        <li>🔴 <strong>Asam asetat glasial</strong>: Korosif, mudah terbakar, iritasi saluran pernapasan</li>
-                        <li>✅ Gunakan APD lengkap (jas lab, sarung tangan, kacamata)</li>
-                        <li>✅ Kerjakan di lemari asam atau ruang berventilasi baik</li>
-                        <li>✅ Reaksi menghasilkan panas - hindari wadah tertutup</li>
-                        <li>✅ Jika terkena zat kimia, cuci dengan air mengalir 10-15 menit</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Referensi -->
-            <div class="section">
-                <div class="section-title">
-                    <span class="icon">📚</span>
-                    REFERENSI
-                </div>
-
-                <div class="references">
-                    <ol>
-                        <li>Bachtiar, E., Pasaribu, B., Mulyani, Y., & Sundari, E.R. (2025). <em>Modul Praktikum Kimia Organik Bahan Alam Laut</em>. Program Studi Ilmu Kelautan, Fakultas Perikanan dan Ilmu Kelautan, Universitas Padjadjaran.</li>
-                        <li>Harborne, J.B. (1987). <em>Metode Fitokimia: Penuntun Cara Modern Menganalisis Tumbuhan</em>. Terbitan Kedua. Bandung: Penerbit ITB.</li>
-                        <li>Zhao, C., Yang, C., Liu, B., Lin, L., Sarker, S.D., Nahar, L., Yu, H., Cao, H., & Xiao, J. (2018). Bioactive compounds from marine macroalgae and their hypoglycemic benefits. <em>Trends in Food Science & Technology</em>, 72, 1-12.</li>
-                        <li>Devi, K.P., Suganthy, N., Kesika, P., & Pandian, S.K. (2008). Bioprotective properties of seaweeds: In vitro evaluation of antioxidant activity and antimicrobial activity against food borne bacteria in relation to polyphenolic content. <em>BMC Complementary and Alternative Medicine</em>, 8(1), 38.</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <strong>Infografis Tugas Praktikum KOBA 2025</strong>
-            <div>Kimia Organik Bahan Alam Laut - Prodi Ilmu Kelautan FPIK UNPAD</div>
-            <div style="margin-top: 10px; font-size: 12px;">
-                Tag: @_gerardoh_ @adrians_maulana @margat___ @sfraurelia
-            </div>
-            <div style="margin-top: 5px; font-size: 12px;">
-                #FitokimiaLaut #SteroidAlami #KOBA #IlmuKelautan #UNPAD
-            </div>
-        </div>
+<div class="scene" id="scene" onclick="flipCard()">
+  <div class="card-wrapper" id="cardWrapper">
+    <div class="card-face card-front" id="cardFront">
+      <div class="card-category" id="cardCat"></div>
+      <div class="card-question" id="cardQ"></div>
+      <div class="card-hint">
+        <svg class="flip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+        Klik untuk jawaban
+      </div>
     </div>
+    <div class="card-face card-back" id="cardBack">
+      <div class="card-category" id="cardCatBack"></div>
+      <div class="card-answer" id="cardA"></div>
+    </div>
+  </div>
+</div>
+
+<div class="controls">
+  <button class="btn" onclick="prevCard()">← Sebelumnya</button>
+  <button class="btn btn-primary" onclick="nextCard()">Selanjutnya →</button>
+</div>
+
+<div class="nav-dots" id="navDots"></div>
+
+<script>
+const cards = [
+  {
+    cat: "Definisi",
+    q: "Apa definisi senyawa non-polar?",
+    a: `Senyawa non-polar adalah senyawa dengan:<br>
+      <span class="tag">Distribusi elektron merata</span>
+      <span class="tag">Bentuk molekul simetris</span>
+      <span class="tag">Momen dipol = 0</span>
+      <span class="tag">Tidak larut dalam air</span><br><br>
+      Karena distribusi elektron merata, tidak ada sisi positif/negatif dalam molekul.`
+  },
+  {
+    cat: "Ciri-Ciri",
+    q: "Sebutkan ciri-ciri utama senyawa non-polar!",
+    a: `<ul>
+      <li>Distribusi elektron <span class="highlight">merata</span></li>
+      <li>Momen dipol <span class="highlight">μ = 0 Debye</span></li>
+      <li>Geometri molekul <span class="highlight">simetris</span></li>
+      <li>Tidak ada muatan parsial δ⁺ / δ⁻</li>
+      <li>Tidak larut dalam air, larut dalam pelarut organik</li>
+      <li>Titik didih & titik leleh <span class="highlight">relatif rendah</span></li>
+      <li>Gaya antarmolekul: <span class="highlight">dispersi London</span> (lemah)</li>
+      <li>Perbedaan keelektronegatifan <span class="highlight">≤ 0,4</span></li>
+    </ul>`
+  },
+  {
+    cat: "Struktur",
+    q: "Bagaimana ciri struktur senyawa non-polar?",
+    a: `<ul>
+      <li><span class="highlight">Ikatan kovalen non-polar</span> — atom berikatan dengan atom yang sama atau keelektronegatifan hampir sama</li>
+      <li><span class="highlight">Bentuk molekul simetris</span> — vektor dipol saling meniadakan</li>
+      <li><span class="highlight">Gaya tarik elektron seimbang</span> — tidak ada kutub δ⁺/δ⁻</li>
+    </ul>`
+  },
+  {
+    cat: "Bentuk Molekul",
+    q: "Apa saja bentuk molekul yang membuat senyawa bersifat non-polar?",
+    a: `<ul>
+      <li><span class="highlight">Linear</span> — CO₂ (O=C=O)</li>
+      <li><span class="highlight">Tetrahedral simetris</span> — CH₄</li>
+      <li><span class="highlight">Trigonal planar simetris</span> — BF₃</li>
+      <li><span class="highlight">Diatomik homonuklir</span> — H₂, N₂, Cl₂</li>
+      <li><span class="highlight">Oktahedral</span> — SF₆</li>
+    </ul>
+    <br>Kunci: semua vektor dipol saling <span class="highlight">meniadakan (resultan = 0)</span>`
+  },
+  {
+    cat: "Sifat Fisik",
+    q: "Apa sifat fisik senyawa non-polar?",
+    a: `<ul>
+      <li>Titik didih <span class="highlight">relatif rendah</span></li>
+      <li><span class="highlight">Tidak larut</span> dalam air (pelarut polar)</li>
+      <li><span class="highlight">Larut</span> dalam pelarut non-polar (heksana, eter)</li>
+      <li>Tidak menghantarkan listrik</li>
+    </ul>
+    <br><em>Prinsip: <span class="highlight">"like dissolves like"</span> — non-polar larut dalam non-polar</em>`
+  },
+  {
+    cat: "Gaya Antarmolekul",
+    q: "Apa gaya antarmolekul pada senyawa non-polar?",
+    a: `Gaya antarmolekul pada senyawa non-polar adalah <span class="highlight">Gaya London (Gaya Dispersi)</span>.<br><br>
+      <ul>
+        <li>Timbul akibat <span class="highlight">dipol sesaat</span> (fluktuasi elektron)</li>
+        <li>Tergolong <span class="highlight">lemah</span> dibanding dipol-dipol atau ikatan hidrogen</li>
+        <li>Kekuatannya meningkat seiring <span class="highlight">massa molekul relatif (Mr)</span> yang lebih besar</li>
+      </ul>`
+  },
+  {
+    cat: "Kegunaan",
+    q: "Apa saja kegunaan senyawa non-polar dalam kehidupan?",
+    a: `<ul>
+      <li>🔥 <span class="highlight">Bahan bakar</span> — hidrokarbon (bensin, LPG)</li>
+      <li>🕯️ <span class="highlight">Pembuatan lilin & plastik</span></li>
+      <li>🧪 <span class="highlight">Pelarut organik</span> — heksana, kloroform</li>
+      <li>🌊 Berperan dalam <span class="highlight">pencemaran minyak di laut</span> (tidak bercampur air)</li>
+      <li>💊 Pelarut dalam industri farmasi</li>
+    </ul>`
+  },
+  {
+    cat: "Contoh Senyawa",
+    q: "Sebutkan contoh-contoh senyawa non-polar beserta nama kimianya!",
+    a: `<ul>
+      <li><span class="highlight">H₂</span> — Hidrogen</li>
+      <li><span class="highlight">O₂</span> — Oksigen</li>
+      <li><span class="highlight">N₂</span> — Nitrogen</li>
+      <li><span class="highlight">Cl₂</span> — Klorin</li>
+      <li><span class="highlight">CH₄</span> — Metana</li>
+      <li><span class="highlight">CO₂</span> — Karbon dioksida</li>
+      <li><span class="highlight">CCl₄</span> — Karbon tetraklorida</li>
+      <li><span class="highlight">C₆H₆</span> — Benzena</li>
+    </ul>`
+  },
+  {
+    cat: "Analisis Molekul",
+    q: "Mengapa CH₄ bersifat non-polar? Jelaskan!",
+    a: `<span class="highlight">CH₄ (Metana) → Non-polar</span><br><br>
+      <ul>
+        <li>Bentuk molekul: <span class="highlight">tetrahedral simetris</span></li>
+        <li>4 ikatan C–H memiliki dipol, namun karena simetris, vektor dipol <span class="highlight">saling meniadakan</span></li>
+        <li>Resultan momen dipol = <span class="highlight">0 Debye</span></li>
+        <li>Perbedaan keelektronegatifan C & H ≈ 0,4 (kecil)</li>
+      </ul>`
+  },
+  {
+    cat: "Analisis Molekul",
+    q: "Mengapa CO₂ bersifat non-polar padahal memiliki ikatan polar?",
+    a: `<span class="highlight">CO₂ (Karbon Dioksida) → Non-polar</span><br><br>
+      <ul>
+        <li>Setiap ikatan C=O bersifat <span class="highlight">polar</span> (karena perbedaan keelektronegatifan)</li>
+        <li>Bentuk molekul: <span class="highlight">linear simetris</span> (O=C=O)</li>
+        <li>Dua vektor dipol berlawanan arah dan sama besar → <span class="highlight">saling menghapus</span></li>
+        <li>Resultan momen dipol = <span class="highlight">0</span></li>
+      </ul>
+      <em>Kunci: polar bond ≠ polar molecule jika bentuknya simetris!</em>`
+  },
+  {
+    cat: "Analisis Molekul",
+    q: "Mengapa O₂ dan N₂ bersifat non-polar?",
+    a: `<span class="highlight">O₂ & N₂ → Non-polar</span><br><br>
+      <ul>
+        <li>Merupakan molekul <span class="highlight">diatomik homonuklir</span> (atom sejenis)</li>
+        <li>Tidak ada perbedaan keelektronegatifan antara dua atom</li>
+        <li>Elektron terbagi <span class="highlight">merata sempurna</span></li>
+        <li>Momen dipol = <span class="highlight">0 Debye</span></li>
+      </ul>`
+  },
+  {
+    cat: "Perbedaan",
+    q: "Apa perbedaan senyawa polar vs non-polar dari segi distribusi elektron dan momen dipol?",
+    a: `<table>
+      <tr><th>Aspek</th><th>Polar</th><th>Non-Polar</th></tr>
+      <tr><td>Distribusi e⁻</td><td>Tidak merata</td><td>Merata</td></tr>
+      <tr><td>Momen dipol</td><td>μ > 0</td><td>μ = 0</td></tr>
+    </table>`
+  },
+  {
+    cat: "Perbedaan",
+    q: "Bagaimana perbedaan polar vs non-polar dari segi geometri, kelarutan, dan titik didih?",
+    a: `<table>
+      <tr><th>Aspek</th><th>Polar</th><th>Non-Polar</th></tr>
+      <tr><td>Geometri</td><td>Asimetris</td><td>Simetris</td></tr>
+      <tr><td>Kelarutan</td><td>Larut di air</td><td>Larut di organik</td></tr>
+      <tr><td>Gaya antarmol.</td><td>Dipol-dipol / H</td><td>Dispersi London</td></tr>
+      <tr><td>Titik didih</td><td>Lebih tinggi</td><td>Lebih rendah</td></tr>
+    </table>`
+  },
+  {
+    cat: "Perbedaan",
+    q: "Berikan contoh senyawa polar dan non-polar serta perbedaan cara mengenalinya!",
+    a: `<table>
+      <tr><th></th><th>Polar</th><th>Non-Polar</th></tr>
+      <tr><td>Contoh</td><td>H₂O, HCl, NH₃</td><td>CH₄, CO₂, O₂</td></tr>
+    </table><br>
+    <span class="highlight">Cara mengenali:</span><br>
+    <ul>
+      <li>Polar: pasangan elektron bebas tidak simetris → μ ≠ 0</li>
+      <li>Non-polar: semua dipol ikatan meniadakan satu sama lain → μ = 0</li>
+    </ul>`
+  },
+  {
+    cat: "Ringkasan",
+    q: "Bagaimana cara cepat menentukan apakah suatu senyawa bersifat non-polar?",
+    a: `<span class="highlight">Langkah Analisis Non-Polar:</span><br><br>
+      <ol style="padding-left:1.2rem;line-height:1.9">
+        <li>Lihat atom — <strong>atom sejenis</strong>? → Non-polar (H₂, N₂)</li>
+        <li>Hitung perbedaan keelektronegatifan — <strong>≤ 0,4</strong>? → Non-polar</li>
+        <li>Tentukan geometri molekul — <strong>simetris</strong>? → Non-polar</li>
+        <li>Cek resultan vektor dipol — <strong>= 0</strong>? → Non-polar</li>
+      </ol>`
+  }
+];
+
+let current = 0;
+let flipped = false;
+let visited = new Set();
+const categories = [...new Set(cards.map(c => c.cat))];
+
+function render() {
+  const card = cards[current];
+  document.getElementById('cardCat').textContent = card.cat;
+  document.getElementById('cardCatBack').textContent = card.cat;
+  document.getElementById('cardQ').textContent = card.q;
+  document.getElementById('cardA').innerHTML = card.a;
+
+  document.getElementById('progressLabel').textContent = `Kartu ${current+1} dari ${cards.length}`;
+  document.getElementById('progressPct').textContent = Math.round((visited.size/cards.length)*100) + '%';
+  document.getElementById('progressFill').style.width = (visited.size/cards.length*100) + '%';
+  document.getElementById('currentNum').textContent = current + 1;
+  document.getElementById('visitedCount').textContent = visited.size;
+
+  document.querySelectorAll('.dot').forEach((d,i) => {
+    d.className = 'dot' + (i===current ? ' active' : '') + (visited.has(i) && i!==current ? ' visited' : '');
+  });
+}
+
+function flipCard() {
+  flipped = !flipped;
+  document.getElementById('cardWrapper').classList.toggle('flipped', flipped);
+  if (flipped) visited.add(current);
+  render();
+}
+
+function goTo(idx) {
+  flipped = false;
+  document.getElementById('cardWrapper').classList.remove('flipped');
+  current = idx;
+  // re-trigger animation
+  const scene = document.getElementById('scene');
+  scene.style.animation = 'none';
+  scene.offsetHeight;
+  scene.style.animation = '';
+  render();
+}
+
+function nextCard() {
+  goTo((current + 1) % cards.length);
+}
+
+function prevCard() {
+  goTo((current - 1 + cards.length) % cards.length);
+}
+
+// Build dots
+const dotsEl = document.getElementById('navDots');
+cards.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'dot';
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+});
+
+// Build category nav
+const catNav = document.getElementById('catNav');
+const allPill = document.createElement('div');
+allPill.className = 'cat-pill active';
+allPill.textContent = 'Semua';
+allPill.onclick = () => {
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  allPill.classList.add('active');
+  goTo(0);
+};
+catNav.appendChild(allPill);
+
+categories.forEach(cat => {
+  const pill = document.createElement('div');
+  pill.className = 'cat-pill';
+  pill.textContent = cat;
+  pill.onclick = () => {
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    const idx = cards.findIndex(c => c.cat === cat);
+    if (idx >= 0) goTo(idx);
+  };
+  catNav.appendChild(pill);
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') nextCard();
+  else if (e.key === 'ArrowLeft') prevCard();
+  else if (e.key === ' ') { e.preventDefault(); flipCard(); }
+});
+
+document.getElementById('totalCards').textContent = cards.length;
+render();
+</script>
 </body>
 </html>
